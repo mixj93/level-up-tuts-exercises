@@ -1,13 +1,11 @@
+import Job, { Person } from './interfaces'
+
 // 3 Basic Types
 const isOpen: boolean = true
 const username: string = 'Jack'
 const height: number = 168
 const list: number[] = [1, 2, 3, 4]
-enum Job {
-  Developer,
-  Designer,
-  PM
-}
+
 const job: Job = Job.Developer
 const meaningless1: any = 'sdfa'
 const meaningless2: any = 254
@@ -53,11 +51,6 @@ const makeMargin = (x: number): string => {
 // strict non type check
 
 // 9 Interfaces
-interface Person {
-  name: string
-  age: number
-  job?: Job // optional
-}
 const sayPerson = ({ name, age, job }: Person) => {
   // console.log(name, age, job)
   return `${name}, ${age}, ${job}`
@@ -96,17 +89,65 @@ const makeSport2 = (sport: Sport2) => {
 // makeSport2('FOOTBALL') // not work!
 
 // 11 Classes In TypeScript
+class Team {
+  teamName: string
+  // SAME AS public teamName: string
+  // private teamName: string
+  // readonly teamName: string
+
+  constructor(teamName: string) {
+    this.teamName = teamName
+  }
+  score() {
+    console.log(`Goal for ${this.teamName}`)
+  }
+}
+
+const lakers = new Team('Lakers')
+// console.log(lakers.score())
 
 // 12 Modules In TypeScript
+// import { Person } from 'interfaces'
 
 // 13 TSC
+// npm install --save-dev typescript
+// tsc
+// tsconfig.json
 
 // 14 Generics
+function outputInput<T>(arg: T): T {
+  return arg
+}
+outputInput('hi')
+outputInput(3)
+
+const outputInput2 = <T extends {}>(arg: T): T => arg
+outputInput2('hi')
+outputInput2(3)
 
 // 15 Duck Typing & Classes with Interfaces
+// Duck Typing
+class Dancer implements Person {
+  name: string
+  age: number
+  job?: Job
+}
+
+let p1: Person = new Dancer()
+const fake = {
+  name: 'sdf',
+  age: 42
+}
+p1 = fake // can work!
 
 // 16 TypeScript with WebPack
+// npm install --save-dev typescript ts-loader
+// tsconfig.json
 
 // 17 Create React App with TypeScript
+// npx create-react-app project-name
+// yarn add typescript @types/node @types/react @types/react-dom @types/jest
 
 // 18 Where To Go Next
+// https://github.com/dzharii/awesome-typescript
+// http://www.typescriptlang.org/
