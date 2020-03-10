@@ -1,0 +1,65 @@
+html {
+  box-sizing: border-box;
+  height: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  background: #111;
+  color: #fff;
+  height: 100%;
+}
+
+.grid {
+  height: 100%;
+  display: grid;
+  grid-column-gap: 7px;
+  grid-auto-flow: column;
+  grid-template: 52px auto / 50px;
+  grid-auto-columns: 270px;
+}
+
+.col {
+  background: #333;
+  overflow-y: auto;
+}
+
+.col-header {
+  background-color: #222;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.col-header h3 {
+  margin: 0;
+  padding: 5px;
+}
+
+.controls {
+  grid-row: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.tweet {
+  padding: 10px;
+  border-bottom: solid 1px #444;
+  display: grid;
+  grid-template-columns: 60px auto;
+}
+.tweet img {
+  border-radius: 50%;
+}
+.tweet > p,
+.tweet > div {
+  grid-column: 2 / -1;
+}
