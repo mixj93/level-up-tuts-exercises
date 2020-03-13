@@ -1,4 +1,6 @@
 import React, { useRef, useState, useEffect, createContext } from 'react'
+// import useAbortableFetch from 'use-abortable-fetch'
+import { useSpring, animated } from 'react-spring'
 import { useTitleInput } from './hooks/useTitleInput'
 import Toggle from './Toggle'
 import Counter from './Counter'
@@ -9,6 +11,8 @@ const App = () => {
   const [name, setName] = useTitleInput('')
   const ref = useRef()
   const [dishes, setDishes] = useState([])
+  // const { data } = useAbortableFetch('https://my-json-server.typicode.com/leveluptuts/fakeapi/dishes')
+  // if (!data) return null
 
   const fetchDishes = async () => {
     const res = await fetch('https://my-json-server.typicode.com/leveluptuts/fakeapi/dishes')
@@ -19,6 +23,13 @@ const App = () => {
   useEffect(() => {
     fetchDishes()
   }, [])
+
+  const props = useSpring({
+    opacity: 1,
+    from: {
+      opacity: 0
+    }
+  })
 
   // const reverseWord = word => {
   //   console.log('Called')
@@ -32,9 +43,12 @@ const App = () => {
   // const titleReversed = useMemo(() => reverseWord(title), [title])
 
   return (
-    <UserContext.Provider value={{ user: false }}>
+    <UserContext.Provider value={{ user: true }}>
       <div className="main-wrapper" ref={ref}>
-        <h1 onClick={() => console.log(ref.current.className)}>Level Up Dishes</h1>
+        <animated.h1 style={props} onClick={() => console.log(ref.current.className)}>
+          Level Up Dishes
+        </animated.h1>
+
         <Toggle />
         <Counter />
         <form
