@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import styled from 'styled-components'
 import Movie from './Movie'
 
-const API_KEY = '887cffaee5e3334740dd2d4520389025'
+const API_KEY = ''
 
 export default class MoviesList extends PureComponent {
   constructor(props) {
@@ -14,7 +14,9 @@ export default class MoviesList extends PureComponent {
 
   async componentDidMount() {
     try {
-      const res = await fetch(`https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${API_KEY}`)
+      const res = await fetch(
+        `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${API_KEY}`
+      )
       const movies = await res.json()
       this.setState({ movies: movies.results })
     } catch (error) {
