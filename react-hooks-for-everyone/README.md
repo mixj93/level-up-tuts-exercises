@@ -4,3 +4,4 @@
 - [awesome-react-hooks](https://github.com/rehooks/awesome-react-hooks)
 - [Collection of React Hooks](https://nikgraf.github.io/react-hooks/)
 - [useHooks](https://usehooks.com/)
+- [Beautiful React Hooks](https://beautifulinteractions.github.io/beautiful-react-hooks/)
