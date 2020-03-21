@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import { Transition, animated, config } from 'react-spring/renderprops'
 import { Portal, absolute } from 'utilities'
 import { Icon } from 'elements'
 import { Card } from 'elements/Cards'
@@ -9,17 +10,40 @@ export default class Modal extends Component {
     const { on, toggle, children } = this.props
     return (
       <Portal>
-        {on && (
-          <ModalWrapper>
-            <ModalCard>
-              <CloseButton onClick={toggle}>
-                <Icon name="close" />
-              </CloseButton>
-              <>{children}</>
-            </ModalCard>
-            <Background onClick={toggle} />
-          </ModalWrapper>
-        )}
+        <Transition
+          items={on}
+          unique
+          native
+          config={config.gentle}
+          from={{ opacity: 0, bgOpacity: 0, y: -50 }}
+          enter={{ opacity: 1, bgOpacity: 0.5, y: 0 }}
+          leave={{ opacity: 0, bgOpacity: 0, y: -50 }}
+        >
+          {on =>
+            on &&
+            (styles => (
+              <ModalWrapper>
+                <ModalCard
+                  style={{
+                    opacity: styles.opacity,
+                    transform: styles.y.interpolate(
+                      y => `translate3d(0, ${y}px, 0)`
+                    )
+                  }}
+                >
+                  <CloseButton onClick={toggle}>
+                    <Icon name="close" />
+                  </CloseButton>
+                  <>{children}</>
+                </ModalCard>
+                <Background
+                  style={{ opacity: styles.bgOpacity }}
+                  onClick={toggle}
+                />
+              </ModalWrapper>
+            ))
+          }
+        </Transition>
       </Portal>
     )
   }
@@ -33,8 +57,8 @@ const ModalWrapper = styled.div`
   justify-content: center;
   align-items: center;
 `
-
-const ModalCard = styled(Card)`
+const AnimCard = Card.withComponent(animated.div)
+const ModalCard = styled(AnimCard)`
   position: relative;
   min-width: 320px;
   z-index: 1;
@@ -49,10 +73,10 @@ const CloseButton = styled.button`
   cursor: pointer;
 `
 
-const Background = styled.div`
+const Background = styled(animated.div)`
   ${absolute({})}
   width: 100%;
   height: 100%;
   background-color: #000;
-  opacity: 0.3;
+  opacity: 0.5;
 `

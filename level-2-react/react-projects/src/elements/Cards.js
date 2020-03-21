@@ -6,8 +6,10 @@ export const Card = styled.div`
   color: ${colors.black};
   border-radius: 5px;
   padding: 16px;
+  max-width: 320px;
+  margin: 0 auto;
   ${elevation[4]};
-  ${transition({ length: '0.5s', ease: 'ease-in' })};
+  ${transition({ property: 'box-shadow', length: '0.5s', ease: 'ease-in' })};
 
   &:hover {
     ${elevation[5]};
