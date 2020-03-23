@@ -3,9 +3,7 @@ import React, { useState, useRef } from 'react'
 export const Input = () => {
   const [name, setName] = useState<string>('')
   const ref = useRef<HTMLInputElement>(null!) // Readonly
-  if (ref && ref.current) {
-    console.log(ref.current.value)
-  }
+  console.log(ref?.current?.value)
 
   return (
     <input
