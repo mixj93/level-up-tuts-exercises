@@ -1,11 +1,12 @@
-import React from "react";
-import { Card, CardGrid, Container, Header } from "./Elements";
-import "./App.css";
-import Menu from "./Menu";
-import blue from "./blue.png";
-import purp from "./purp.png";
-import black from "./black.png";
-import green from "./green.png";
+import React from 'react'
+import { Card, CardGrid, Container, Header } from './Elements'
+import './App.css'
+import Menu from './Menu'
+import Toggle from './components/Toggle'
+import blue from './blue.png'
+import purp from './purp.png'
+import black from './black.png'
+import green from './green.png'
 
 function App() {
   return (
@@ -16,27 +17,30 @@ function App() {
       </Header>
       <Container>
         <h2>Super Cool</h2>
+
+        <Toggle />
+
         <CardGrid>
-          <Card style={{ background: "var(--purp)" }}>
+          <Card style={{ background: 'var(--purp)' }}>
             <h3>Some card</h3>
-            <img src={purp} />
+            <img src={purp} alt="Some card" />
           </Card>
-          <Card style={{ background: "var(--blue)" }}>
+          <Card style={{ background: 'var(--blue)' }}>
             <h3>Some card</h3>
-            <img src={blue} />
+            <img src={blue} alt="Some card" />
           </Card>
-          <Card style={{ background: "var(--black)" }}>
+          <Card style={{ background: 'var(--black)' }}>
             <h3>Some card</h3>
-            <img src={black} />
+            <img src={black} alt="Some card" />
           </Card>
-          <Card style={{ background: "var(--green)" }}>
+          <Card style={{ background: 'var(--green)' }}>
             <h3>Some card</h3>
-            <img src={green} />
+            <img src={green} alt="Some card" />
           </Card>
         </CardGrid>
       </Container>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
