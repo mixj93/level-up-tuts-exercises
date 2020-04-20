@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Header = styled.header`
   background: var(--black);
@@ -14,19 +14,20 @@ export const Header = styled.header`
   h1 {
     font-size: 1rem;
   }
-`;
+`
 
 export const Container = styled.div`
   width: 95%;
   max-width: 600px;
   margin: 0 auto;
   padding-bottom: 60px;
-`;
+  color: var(--text);
+`
 
 export const CardGrid = styled.div`
   display: grid;
   grid-gap: 20px;
-`;
+`
 
 export const Card = styled.div`
   border-radius: 15px;
@@ -40,4 +41,4 @@ export const Card = styled.div`
   img {
     width: 100%;
   }
-`;
+`

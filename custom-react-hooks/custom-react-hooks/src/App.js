@@ -8,6 +8,9 @@ import Hover from './components/Hover'
 import { PageWrapper } from './state'
 import Nav from './components/Nav'
 import Cookie from './components/Cookie'
+import Script from './components/Script'
+import Local from './components/Local'
+import Theme from './components/Theme'
 
 import './App.css'
 import blue from './blue.png'
@@ -29,10 +32,13 @@ function App() {
         <Container>
           <h2>Super Cool</h2>
 
+          <Theme />
+          <Script />
           <Toggle />
           <Inc />
           <Mount />
           <Cookie />
+          <Local />
           <Hover />
 
           <CardGrid>
