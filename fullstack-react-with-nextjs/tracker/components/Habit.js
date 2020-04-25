@@ -1,16 +1,21 @@
-import HabbitButton from './HabbitButton'
+import HabitButton from './HabitButton'
 
 const colors = ['#718096', '#F56565', '#F6E05E', '#68D391', '#63B3ED']
 
-const Habbit = ({ habbit, index }) => {
+const Habit = ({ habit, index }) => {
   const dates = getLast5Days()
 
   return (
     <article>
-      <h3>{habbit}</h3>
+      <h3>{habit.name}</h3>
       <div className="buttons">
         {dates.map((date) => (
-          <HabbitButton key={date.getTime()} date={date} />
+          <HabitButton
+            key={date.getTime()}
+            date={date}
+            habitId={habit._id}
+            events={habit.events}
+          />
         ))}
       </div>
       <style jsx>{`
@@ -44,4 +49,4 @@ const getLast5Days = () => {
   return dates
 }
 
-export default Habbit
+export default Habit
