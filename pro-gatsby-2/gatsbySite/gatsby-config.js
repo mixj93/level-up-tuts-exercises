@@ -3,15 +3,18 @@ module.exports = {
     title: `Test Blog`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
     author: `@mixj93`,
+    siteUrl: 'https://xueli.li'
   },
   plugins: [
+    `gatsby-plugin-sitemap`,
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/src/images`,
-      },
+        path: `${__dirname}/src/images`
+      }
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
@@ -21,22 +24,31 @@ module.exports = {
         name: `gatsby-starter-default`,
         short_name: `starter`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `#524763`,
+        theme_color: `#524763`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
-      },
+        icon: `src/images/gatsby-icon.png` // This path is relative to the root of the site.
+      }
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    `gatsby-plugin-offline`,
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/src/posts`,
-        name: 'posts',
-      },
+        name: 'posts'
+      }
     },
-    'gatsby-transformer-remark',
-  ],
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/src/images`,
+        name: 'images'
+      }
+    },
+    `gatsby-transformer-remark`,
+    `gatsby-plugin-netlify-cms`,
+    `gatsby-plugin-netlify`
+  ]
 }

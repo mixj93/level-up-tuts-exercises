@@ -1,19 +1,27 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import React from 'react'
-import PropTypes from 'prop-types'
+import styled from 'styled-components'
 import { useStaticQuery, graphql } from 'gatsby'
-
+import { useSpring, animated } from 'react-spring'
+import Img from 'gatsby-image'
 import Header from './header'
 import Archive from './archive'
 import './layout.css'
 
-const Layout = ({ children }) => {
+const MainLayout = styled.main`
+  max-width: 90%;
+  margin: 1rem auto;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-gap: 40px;
+`
+
+const FooterWrapper = styled.div`
+  margin: 0 auto;
+  text-align: center;
+  padding: 2rem;
+`
+
+const Layout = ({ children, location }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -21,33 +29,44 @@ const Layout = ({ children }) => {
           title
         }
       }
+      file(relativePath: { regex: "/bg/" }) {
+        childImageSharp {
+          fluid(maxWidth: 1000) {
+            ...GatsbyImageSharpFluid_tracedSVG
+          }
+        }
+      }
     }
   `)
+
+  const props = useSpring({
+    from: { height: location.pathname === '/' ? '150px' : '300px' },
+    to: { height: location.pathname === '/' ? '300px' : '150px' }
+  })
 
   return (
     <>
       <Header siteTitle={data.site.siteMetadata.title} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
-        <main>{children}</main>
-        <Archive />
-        <footer>
+      <animated.div style={{ ...props, overflow: 'hidden' }}>
+        <Img fluid={data.file.childImageSharp.fluid} />
+      </animated.div>
+      <div>
+        <MainLayout>
+          <div>{children}</div>
+          <Archive />
+        </MainLayout>
+        <FooterWrapper>
           © {new Date().getFullYear()}, Built with
           {` `}
           <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
+        </FooterWrapper>
       </div>
     </>
   )
 }
 
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
+Layout.defaultProps = {
+  location: {}
 }
 
 export default Layout

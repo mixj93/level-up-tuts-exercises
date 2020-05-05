@@ -2,9 +2,9 @@ import React from 'react'
 
 import Layout from '../components/layout'
 
-const About = () => {
+const About = ({ location }) => {
   return (
-    <Layout>
+    <Layout location={location}>
       <h1>About US</h1>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates
