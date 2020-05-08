@@ -1,29 +1,27 @@
 <template>
   <header>
-    <h1>{{newTitle}}</h1>
+    <h1>
+      <router-link to="/">{{ title }}</router-link>
+    </h1>
+    <transition name="fade">
+      <h1 v-if="show">Animated</h1>
+    </transition>
+    <button @click="show = !show">Show/Hide</button>
   </header>
 </template>
 
 <script>
 export default {
-  name: "Header",
+  name: 'Header',
   props: {
     title: String
   },
   data() {
     return {
-      name: "Scott"
-    };
-  },
-  computed: {
-    newTitle: function() {
-      return this.title
-        .split("")
-        .reverse()
-        .join("");
+      show: false
     }
   }
-};
+}
 </script>
 
 <style scoped>
