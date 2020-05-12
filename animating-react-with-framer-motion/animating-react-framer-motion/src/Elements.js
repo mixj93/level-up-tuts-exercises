@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import styled from 'styled-components'
+import { motion } from 'framer-motion'
 
 export const Header = styled.header`
   background: var(--black);
@@ -14,21 +15,21 @@ export const Header = styled.header`
   h1 {
     font-size: 1rem;
   }
-`;
+`
 
 export const Container = styled.div`
   width: 95%;
   max-width: 600px;
   margin: 0 auto;
   padding-bottom: 60px;
-`;
+`
 
 export const CardGrid = styled.div`
   display: grid;
   grid-gap: 20px;
-`;
+`
 
-export const Card = styled.div`
+export const Card = styled(motion.div)`
   border-radius: 15px;
   padding: 20px;
   color: white;
@@ -40,4 +41,4 @@ export const Card = styled.div`
   img {
     width: 100%;
   }
-`;
+`
